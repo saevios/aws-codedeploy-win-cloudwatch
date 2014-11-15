@@ -1,0 +1,50 @@
+{
+    "EngineConfiguration": {
+        "PollInterval": "00:00:15",
+        "Components": [
+            {
+                "Id": "PerformanceCounterFreeSpace",
+                "FullName": "AWS.EC2.Windows.CloudWatch.PerformanceCounterComponent.PerformanceCounterInputComponent,AWS.EC2.Windows.CloudWatch",
+                "Parameters": {
+                    "CategoryName": "LogicalDisk",
+                    "CounterName": "% Free Space",
+                    "InstanceName": "C:",
+                    "MetricName": "DiskFree",
+                    "Unit": "Percent",
+                    "DimensionName": "InstanceId",
+                    "DimensionValue": "{instance_id}"
+                }
+            },
+            {
+                "Id": "PerformanceCounterMemoryAvailable",
+                "FullName": "AWS.EC2.Windows.CloudWatch.PerformanceCounterComponent.PerformanceCounterInputComponent,AWS.EC2.Windows.CloudWatch",
+                "Parameters": {
+                    "CategoryName": "Memory",
+                    "CounterName": "Available MBytes",
+                    "InstanceName": "",
+                    "MetricName": "MemoryAvailable",
+                    "Unit": "Megabytes",
+                    "DimensionName": "InstanceId",
+                    "DimensionValue": "{instance_id}"
+                }
+            },
+            {
+                "Id": "CloudWatch",
+                "FullName": "AWS.EC2.Windows.CloudWatch.CloudWatch.CloudWatchOutputComponent,AWS.EC2.Windows.CloudWatch",
+                "Parameters": 
+                {
+                    "AccessKey": "",
+                    "SecretKey": "",
+                    "Region": "us-west-2",
+                    "NameSpace": "Classmethod/EC2"
+                }
+            }
+        ],
+        "Flows": {
+            "Flows": 
+            [
+                "(PerformanceCounterFreeSpace,PerformanceCounterMemoryAvailable),CloudWatch"
+            ]
+        }
+    } 
+}
